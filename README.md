@@ -1,7 +1,7 @@
 # minio-test
 khcheck to create a minio bucket, create an object, then delete both
 
-This check requires three environment variables in the kube spec used to deploy it.  A minio endpoint, and the access/secret (or user/pass).
+This check requires three environment variables in the kube spec used to deploy it.  A minio API endpoint, and the access/secret (or user/pass).
 
 **Example yaml**
 
