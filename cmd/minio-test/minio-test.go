@@ -38,7 +38,7 @@ func randSeq(n int) []byte {
 	return []byte(string(b))
 }
 
-func check_minio() {
+func main() {
 	ctx := context.Background()
 
 	// Initialize minio client object.

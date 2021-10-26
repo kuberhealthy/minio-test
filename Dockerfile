@@ -13,5 +13,5 @@ FROM scratch
 COPY --from=builder /etc/passwd /etc/passwd
 USER user
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=builder /build/cmd/http-check/http-check /app/http-check
+COPY --from=builder /build/cmd/minio-test/minio-test /app/minio-test
 ENTRYPOINT ["/app/minio-test"]
