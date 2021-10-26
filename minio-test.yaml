@@ -1,12 +1,3 @@
-# minio-test
-khcheck to create a minio bucket, create an object, then delete both
-
-This check requires three environment variables in the kube spec used to deploy it.  A minio endpoint, and the access/secret (or user/pass).
-
-**Example yaml**
-
-```yaml
----
 apiVersion: comcast.github.io/v1
 kind: KuberhealthyCheck
 metadata:
@@ -35,8 +26,3 @@ spec:
           requests:
             cpu: 10m
             memory: 50Mi
-```
-
-#### How-to
-
-Apply a `.yaml` file similar to the one shown above with `kubectl apply -f`
