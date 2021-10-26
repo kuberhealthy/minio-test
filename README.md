@@ -21,16 +21,16 @@ spec:
     testLabel: testLabel
   podSpec:
     containers:
-      - env:
+      - name: minio-test
+        image: kuberhealthy/minio-test:v1.0.0
+        imagePullPolicy: IfNotPresent
+        env:
           - name: MINIO_ENDPOINT
             value: "https://changme.com:8443"
           - name: ACCESS_KEY
             value: "CHANGEME"
           - name: SECRET_KEY
             value: "CHANGEME"
-        image: kuberhealthy/minio-test:v1.0.0
-        imagePullPolicy: IfNotPresent
-        name: main
         resources:
           requests:
             cpu: 10m
