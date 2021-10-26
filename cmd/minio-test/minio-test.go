@@ -20,11 +20,11 @@ var secretKey string
 var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 func init() {
-	minioEndpoint := os.Getenv("MINIO_ENDPOINT")
-	accessKey := os.Getenv("ACCESS_KEY")
-	secretKey := os.Getenv("SECRET_KEY")
+	minioEndpoint = os.Getenv("MINIO_ENDPOINT")
+	accessKey = os.Getenv("ACCESS_KEY")
+	secretKey = os.Getenv("SECRET_KEY")
 
-	if minioEndpoint == "" || accessKey == "" || secretKey == "" {
+	if len(minioEndpoint) < 1 || len(accessKey) < 1 || len(secretKey) < 1 {
 		log.Fatalln("MINIO_ENDPOINT, ACCESS_KEY, and SECRET_KEY are required.")
 	}
 }
@@ -53,6 +53,7 @@ func main() {
 		if err != nil {
 			log.Printf("Unable to report failure: %s", err)
 		}
+		os.Exit(0)
 	}
 
 	bucketName := "khcheck-test"
@@ -70,14 +71,14 @@ func main() {
 
 	// create a file
 	contents := randSeq(1000)
-	err = ioutil.WriteFile("./test", contents, 0755)
+	err = ioutil.WriteFile("/app/test", contents, 0755)
 	if err != nil {
 		log.Printf("Unable to write a new file: %s", err)
 		os.Exit(0)
 	}
 
 	// put the file object into our new bucket
-	if _, err := minioClient.FPutObject(ctx, bucketName, "test", "./test", minio.PutObjectOptions{}); err != nil {
+	if _, err := minioClient.FPutObject(ctx, bucketName, "test", "/app/test", minio.PutObjectOptions{}); err != nil {
 		log.Printf("Unable to put file object into minio: %s", err)
 		err = checkclient.ReportFailure([]string{err.Error()})
 		if err != nil {
@@ -87,7 +88,7 @@ func main() {
 	}
 
 	// delete file
-	err = os.Remove("./test")
+	err = os.Remove("/app/test")
 	if err != nil {
 		log.Printf("Unable to remove file: %s", err)
 	}
