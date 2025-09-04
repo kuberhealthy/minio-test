@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"time"
 
-	checkclient "github.com/kuberhealthy/kuberhealthy/v2/pkg/checks/external/checkclient"
+	checkclient "github.com/kuberhealthy/kuberhealthy/v3/pkg/checkclient"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
 
