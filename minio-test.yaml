@@ -1,4 +1,4 @@
-apiVersion: comcast.github.io/v1
+apiVersion: kuberhealthy.github.io/v2
 kind: KuberhealthyCheck
 metadata:
   name: minio-test
@@ -7,18 +7,20 @@ spec:
   runInterval: 30s
   timeout: 2m
   podSpec:
-    containers:
-      - name: minio-test
-        image: kuberhealthy/minio-test:v1.0.0
-        imagePullPolicy: IfNotPresent
-        env:
-          - name: MINIO_ENDPOINT
-            value: "https://changme.com:8443"
-          - name: ACCESS_KEY
-            value: "CHANGEME"
-          - name: SECRET_KEY
-            value: "CHANGEME"
-        resources:
-          requests:
-            cpu: 10m
-            memory: 50Mi
+    spec:
+      containers:
+        - name: minio-test
+          image: kuberhealthy/minio-test:v1.0.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MINIO_ENDPOINT
+              value: "https://changme.com:8443"
+            - name: ACCESS_KEY
+              value: "CHANGEME"
+            - name: SECRET_KEY
+              value: "CHANGEME"
+          resources:
+            requests:
+              cpu: 10m
+              memory: 50Mi
+      restartPolicy: Never
