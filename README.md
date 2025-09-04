@@ -15,10 +15,6 @@ metadata:
 spec:
   runInterval: 30s
   timeout: 2m
-  extraAnnotations:
-    comcast.com/testAnnotation: test.annotation
-  extraLabels:
-    testLabel: testLabel
   podSpec:
     containers:
       - name: minio-test
@@ -36,6 +32,13 @@ spec:
             cpu: 10m
             memory: 50Mi
 ```
+
+Kuberhealthy automatically adds several environment variables to each check pod:
+
+- `KH_REPORTING_URL` – endpoint for reporting check status.
+- `KH_CHECK_RUN_DEADLINE` – UNIX deadline for the current check run.
+- `KH_RUN_UUID` – unique identifier for the check run, used when reporting.
+- `KH_POD_NAMESPACE` – namespace where the check pod is running.
 
 #### How-to
 
