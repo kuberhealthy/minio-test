@@ -6,10 +6,6 @@ metadata:
 spec:
   runInterval: 30s
   timeout: 2m
-  extraAnnotations:
-    comcast.com/testAnnotation: test.annotation
-  extraLabels:
-    testLabel: testLabel
   podSpec:
     containers:
       - name: minio-test
